@@ -1,0 +1,44 @@
+/* Общие стили для popup */
+.popup {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(
+    0,
+    0,
+    0,
+    0.5
+  ); /* Полупрозрачный фон для затемнения остального контента */
+  display: flex;
+  justify-content: flex-end; /* Выравнивание контента внутри popup к правому краю */
+  align-items: center; /* Выравнивание контента внутри popup по вертикали */
+  z-index: 9999; /* Выставьте z-index, чтобы popup отображался поверх остального контента */
+  height: 100vh;
+}
+
+.popup-content {
+  background-color: grey;
+  padding: 20px;
+  max-width: 500px; /* Ширина содержимого popup */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  height: 100vh;
+}
+
+.popup-content .close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+}
+
+.popup-content p {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.popup-image {
+  border-radius: 50%;
+  overflow: hidden;
+}

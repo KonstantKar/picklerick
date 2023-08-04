@@ -81,7 +81,7 @@ a:hover {
 .btn {
   width: max-content;
   display: inline-block;
-  color: var(--color-primary);
+  color: var(black);
   padding: 0.75rem 1.2rem;
   border-radius: 0.4rem;
   cursor: pointer;
@@ -107,7 +107,6 @@ img {
 }
 
 /* ================ Media Querius (meduim) ==================*/
-/* На планшетах контейнерный класс будет составлять 86% */
 @media screen and (max-width: 1024px) {
   .container {
     width: var() var(--container-width-md);
@@ -119,7 +118,6 @@ section {
 }
 
 /* ================ Media Querius (small) ==================*/
-/* На планшетах контейнерный класс будет составлять 86% */
 @media screen and (max-width: 600px) {
   .container {
     width: var(--container-width-sm);

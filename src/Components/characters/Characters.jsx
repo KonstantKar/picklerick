@@ -2,6 +2,7 @@ import React, { useEffect, useMemo, useState } from "react";
 import "./Characters.css";
 import axios from "axios";
 import Inputs from "./inputs/Inputs";
+import Popup from "./popup/Popup";
 const Characters = () => {
   const [characters, setCharacters] = useState([]);
   const [nameFilter, setNameFilter] = useState("");
@@ -9,7 +10,11 @@ const Characters = () => {
   const [statusFilter, setStatusFilter] = useState("");
   const [typeFilter, setTypeFilter] = useState("");
   const [speciesFilter, setSpeciesFilter] = useState("");
+  //Логика отображения Popup
+  const [selectedCharacter, setSelectedCharacter] = useState(null);
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
 
+  //Общая фильтрация
   const filteredCharacters = useMemo(() => {
     return characters.filter((character) => {
       return (
@@ -33,6 +38,7 @@ const Characters = () => {
     charactersData();
   }, []);
 
+  //Запрос на получени данных с API
   const charactersData = async () => {
     try {
       const response = await axios.get(
@@ -44,9 +50,19 @@ const Characters = () => {
     }
   };
 
+  //Функция открытия и закрытия Popup выбранного персонажа
+  const handleInfoButtonClick = (character) => {
+    setSelectedCharacter(character);
+    setIsPopupOpen(true);
+  };
+
+  const closePopup = () => {
+    setIsPopupOpen(false);
+  };
+
   return (
     <section id="Characters">
-      <h2>Один лучше другого!</h2>
+      <h2>Найди нужного тебе!</h2>
       <Inputs
         nameFilter={nameFilter}
         setNameFilter={setNameFilter}
@@ -73,9 +89,10 @@ const Characters = () => {
               <h5>Гендер: {character.gender}</h5>
               <h5>Статус: {character.status}</h5>
               {character.type && <h5>Тип:{character.type}</h5>}
+              {/* Добавьте другие свойства персонажа, которые хотите показать */}
               <div className="experience__buttons" target="_blank">
                 <a
-                  href="https://github.com/KonstantKar/vk"
+                  onClick={() => handleInfoButtonClick(character)}
                   className="btn btn-primary"
                 >
                   Посмотреть информацию
@@ -85,6 +102,10 @@ const Characters = () => {
           ))}
         </div>
       </div>
+      {/* Popup с полной информацией о персонаже */}
+      {isPopupOpen && selectedCharacter && (
+        <Popup selectedCharacter={selectedCharacter} closePopup={closePopup} />
+      )}
     </section>
   );
 };
