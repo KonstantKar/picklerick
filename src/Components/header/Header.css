@@ -6,45 +6,12 @@ header {
 
 .header__container {
   text-align: center;
-  height: 100%;
   position: relative;
-}
-
-/* ============== CTA =============*/
-.cta {
-  margin-top: 2.5rem;
-  display: flex;
-  gap: 1rem;
-  justify-content: center;
-}
-
-/* ============= HeaderSocials =========== */
-.header__socials {
-  font-size: 3rem;
-  margin-top: 1rem;
-  display: flex;
-  justify-content: center;
-  gap: 1rem;
-}
-
-/* Линия перед ссылками на соцсети */
-.header__socials::after {
-  content: "";
-  width: 20rem;
-  height: 2px;
-  position: absolute;
-  background: var(--color-primary);
-}
-
-/* ================ ME ================== */
-.art {
-  width: 22rem;
-  height: 30rem;
-  position: absolute;
-  left: calc(50% - 11rem);
-  margin-top: 2rem;
-  border-radius: 10%;
-  overflow: hidden;
+  height: 100%;
+  background-image: url("https://i.pinimg.com/originals/db/f2/cb/dbf2cbffc98ca1af58f46d83e1d4e208.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
 /* ================ Media Querius (meduim) ==================*/
