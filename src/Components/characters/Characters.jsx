@@ -10,6 +10,7 @@ const Characters = () => {
   const [statusFilter, setStatusFilter] = useState("");
   const [typeFilter, setTypeFilter] = useState("");
   const [speciesFilter, setSpeciesFilter] = useState("");
+  const [currentPage, setCurrentPage] = useState(1);
   //Логика отображения Popup
   const [selectedCharacter, setSelectedCharacter] = useState(null);
   const [isPopupOpen, setIsPopupOpen] = useState(false);
@@ -42,7 +43,7 @@ const Characters = () => {
   const charactersData = async () => {
     try {
       const response = await axios.get(
-        "https://rickandmortyapi.com/api/character"
+        `https://rickandmortyapi.com/api/character/?page=${currentPage}`
       );
       setCharacters(response.data.results);
     } catch (error) {
@@ -60,9 +61,39 @@ const Characters = () => {
     setIsPopupOpen(false);
   };
 
+  // Функции листания страниц
+  const handlePrevPage = () => {
+    setCurrentPage((prevPage) => Math.max(prevPage - 1, 1));
+  };
+  const handleNextPage = () => {
+    setCurrentPage((prevPage) => prevPage + 1);
+  };
+
+  //Отслеживание страницы
+  useEffect(() => {
+    charactersData();
+  }, [currentPage]);
+
   return (
     <section id="Characters">
       <h2>Найди нужного тебе!</h2>
+      {/*Так как изначально API даёт только 20 персонажей, пришлось сделать пагинацию*/}
+      <div className="pagination">
+        <button
+          onClick={handlePrevPage}
+          disabled={currentPage === 1}
+          className="btn"
+        >
+          Предыдущая страница
+        </button>
+        <button
+          onClick={handleNextPage}
+          className="btn"
+          style={{ marginLeft: "10px", marginTop: "10px" }}
+        >
+          Следующая страница
+        </button>
+      </div>
       <Inputs
         nameFilter={nameFilter}
         setNameFilter={setNameFilter}
@@ -106,6 +137,22 @@ const Characters = () => {
       {isPopupOpen && selectedCharacter && (
         <Popup selectedCharacter={selectedCharacter} closePopup={closePopup} />
       )}
+      <div className="pagination">
+        <button
+          onClick={handlePrevPage}
+          disabled={currentPage === 1}
+          className="btn"
+        >
+          Предыдущая страница
+        </button>
+        <button
+          onClick={handleNextPage}
+          className="btn"
+          style={{ marginLeft: "10px", marginTop: "10px" }}
+        >
+          Следующая страница
+        </button>
+      </div>
     </section>
   );
 };
