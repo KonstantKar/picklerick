@@ -1,0 +1,70 @@
+header {
+  height: 30rem;
+  padding-top: 7rem;
+  overflow: hidden;
+}
+
+.header__container {
+  text-align: center;
+  height: 100%;
+  position: relative;
+}
+
+/* ============== CTA =============*/
+.cta {
+  margin-top: 2.5rem;
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+}
+
+/* ============= HeaderSocials =========== */
+.header__socials {
+  font-size: 3rem;
+  margin-top: 1rem;
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+/* Линия перед ссылками на соцсети */
+.header__socials::after {
+  content: "";
+  width: 20rem;
+  height: 2px;
+  position: absolute;
+  background: var(--color-primary);
+}
+
+/* ================ ME ================== */
+.art {
+  width: 22rem;
+  height: 30rem;
+  position: absolute;
+  left: calc(50% - 11rem);
+  margin-top: 2rem;
+  border-radius: 10%;
+  overflow: hidden;
+}
+
+/* ================ Media Querius (meduim) ==================*/
+@media screen and (max-width: 1024px) {
+  .scroll__down {
+    right: -2.3rem;
+  }
+  .header__socials {
+    display: none;
+  }
+}
+/* ================ Media Querius (small) ==================*/
+@media screen and (max-width: 600px) {
+  header {
+    height: 30rem;
+  }
+  .scroll__down {
+    display: none;
+  }
+  .header__socials {
+    display: none;
+  }
+}
